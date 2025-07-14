@@ -1,0 +1,4 @@
+// 1.21.1	2025-07-14T16:52:38.6398769	create_cultivation's processing recipes: cultivating
+807829629d50168803561c12a4e6f4f54b5c07fc data/create_cultivation/recipe/cultivating/carrot.json
+84fe434192a9bb0d951eba4084daba3a21d2f2b2 data/create_cultivation/recipe/cultivating/wheat_from_seeds.json
+8e2c0e12573249880081ab613905c260f71f3358 data/create_cultivation/recipe/stacking_cultivating/sugar_cane.json

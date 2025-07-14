@@ -1,0 +1,11 @@
+{
+  "type": "create_cultivation:stacking_cultivating",
+  "block_to_render": "minecraft:sugar_cane",
+  "ingredient": {
+    "item": "minecraft:sugar_cane"
+  },
+  "processingDuration": 180,
+  "result": {
+    "id": "minecraft:sugar_cane"
+  }
+}

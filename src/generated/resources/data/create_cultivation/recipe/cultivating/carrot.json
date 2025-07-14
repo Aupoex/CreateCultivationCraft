@@ -1,0 +1,16 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:carrots",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    }
+  ],
+  "processingDuration": 120,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:carrot"
+    }
+  ]
+}
