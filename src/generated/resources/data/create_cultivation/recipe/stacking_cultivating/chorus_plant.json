@@ -1,0 +1,12 @@
+{
+  "type": "create_cultivation:stacking_cultivating",
+  "block_to_render": "minecraft:chorus_plant",
+  "ingredient": {
+    "item": "minecraft:chorus_fruit"
+  },
+  "maxHeight": 12,
+  "processingDuration": 36000,
+  "result": {
+    "id": "minecraft:chorus_fruit"
+  }
+}

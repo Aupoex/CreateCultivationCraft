@@ -1,0 +1,12 @@
+{
+  "type": "create_cultivation:stacking_cultivating",
+  "block_to_render": "minecraft:cactus",
+  "ingredient": {
+    "item": "minecraft:cactus"
+  },
+  "maxHeight": 4,
+  "processingDuration": 18000,
+  "result": {
+    "id": "minecraft:cactus"
+  }
+}

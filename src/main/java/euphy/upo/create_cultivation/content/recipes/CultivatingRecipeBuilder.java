@@ -16,6 +16,11 @@ public class CultivatingRecipeBuilder extends ProcessingRecipeBuilder<Cultivatin
         return this;
     }
 
+    public CultivatingRecipeBuilder height(int height) {
+        this.params.height = height;
+        return this;
+    }
+
     @Override
     protected CultivatingRecipeParams createParams() {
         return new CultivatingRecipeParams();

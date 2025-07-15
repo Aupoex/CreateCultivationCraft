@@ -10,10 +10,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +25,7 @@ import java.util.List;
 public class CultivationBaseBlockEntity extends KineticBlockEntity {
 
     private final ItemStackHandler itemHandler = createItemHandler();
-
+    private boolean isHarvesting = false;
     public CultivationBaseBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }
@@ -37,7 +37,7 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
         updateWorkingState();
     }
 
-    public IItemHandler getItemHandler() {
+    public ItemStackHandler getItemHandler() {
         return itemHandler;
     }
 
@@ -45,8 +45,11 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
         return new ItemStackHandler(8) {
             @Override
             public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+                if (!isHarvesting) {
+                    return stack;
+                }
+
                 return super.insertItem(slot, stack, simulate);
-                // return stack;
             }
 
             @Override
@@ -98,7 +101,7 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
             return;
         }
 
-        if (!tankBE.isMature()) {
+        if (!tankBE.isReadyForHarvest()) {
             return;
         }
 
@@ -110,11 +113,31 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
     }
 
     private void harvestStageBased(CultivationTankBlockEntity tankBE) {
+        this.isHarvesting = true;
+        try {
         tankBE.getCurrentRecipe().ifPresent(recipeHolder -> {
 
             if (recipeHolder.value() instanceof CultivatingRecipe recipe) {
+
+
+                Ingredient seedIngredient = recipe.getIngredients().get(0);
+                if (recipe.getHeight() > 1 && tankBE.getHeight() < recipe.getHeight()) {
+
+                    return;
+                }
+
+                boolean replanted = false;
+
+
                 List<ProcessingOutput> results = recipe.getRollableResults();
                 List<ItemStack> rolledResults = new ArrayList<>();
+
+                boolean wasWatered = tankBE.isWatered();
+                if (wasWatered) {
+                    for (ProcessingOutput output : results) {
+                        rolledResults.add(output.getStack().copy());
+                    }
+                }
 
                 for (ProcessingOutput output : results) {
                     ItemStack rolled = output.rollOutput();
@@ -123,24 +146,46 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
                     }
                 }
 
+                for (int i = 0; i < rolledResults.size(); i++) {
+                    ItemStack potentialSeed = rolledResults.get(i);
+                    if (seedIngredient.test(potentialSeed)) {
+
+                        potentialSeed.shrink(1);
+                        replanted = true;
+
+
+                        if (potentialSeed.isEmpty()) {
+                            rolledResults.remove(i);
+                        }
+                        break;
+                    }
+                }
+
                 if (canInsertAll(rolledResults)) {
                     insertAll(rolledResults);
-                    tankBE.onHarvest();
+                    tankBE.onHarvest(replanted);
                 }
             }
         });
+        } finally {
+            this.isHarvesting = false;
+        }
     }
 
     private void harvestStackBased(CultivationTankBlockEntity tankBE) {
+        this.isHarvesting = true;
+        try {
         tankBE.getCurrentRecipe().ifPresent(recipeHolder -> {
 
             if (recipeHolder.value() instanceof StackingCultivatingRecipe recipe) {
                 ProcessingOutput result = recipe.getResult();
                 int height = tankBE.getCurrentHeight();
+                int harvestedAmount = height - 1;
 
+                if (harvestedAmount <= 0) return;
 
                 ItemStack totalResult = result.getStack().copy();
-                totalResult.setCount(result.getStack().getCount() * height);
+                totalResult.setCount(result.getStack().getCount() * harvestedAmount);
 
                 List<ItemStack> results = List.of(totalResult);
 
@@ -150,6 +195,9 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
                 }
             }
         });
+        } finally {
+            this.isHarvesting = false;
+        }
     }
 
     private boolean canInsertAll(List<ItemStack> stacks) {

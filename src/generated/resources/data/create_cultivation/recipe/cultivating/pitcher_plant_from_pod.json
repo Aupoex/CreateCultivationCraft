@@ -1,0 +1,16 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:pitcher_crop",
+  "height": 2,
+  "ingredients": [
+    {
+      "item": "minecraft:pitcher_pod"
+    }
+  ],
+  "processingDuration": 18000,
+  "results": [
+    {
+      "id": "minecraft:pitcher_plant"
+    }
+  ]
+}

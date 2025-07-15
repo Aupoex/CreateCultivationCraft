@@ -1,25 +1,9 @@
+Create: Cultivation
+A Create mod addon that provides a new way for fully automatic crop cultivation.
 
-Installation information
-=======
+This mod introduces a new multi-block machine: the Cultivation Tank. It automates the planting, growing, and harvesting processes for a wide variety of plants, including vanilla crops, flowers, stacking plants, and even crops from other mods like Farmer's Delight.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+Create: Cultivation | 机械动力：栽培
+一个为机械动力（Create）模组添加的全自动作物栽培附属。
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
-
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
-
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
-
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+本模组添加了一个新的多方块机器：栽培罐。它为各类植物提供了从播种、生长到收获的全自动化解决方案，支持原版的阶段式作物、花卉、堆叠式植物，并可通过数据包兼容其他模组的作物（如农夫乐事）。

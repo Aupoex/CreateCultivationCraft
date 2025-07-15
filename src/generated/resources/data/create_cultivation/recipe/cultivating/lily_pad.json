@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:lily_pad",
+  "ingredients": [
+    {
+      "item": "minecraft:lily_pad"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:lily_pad"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:lily_pad"
+    }
+  ]
+}

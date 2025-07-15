@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:short_grass",
+  "ingredients": [
+    {
+      "item": "minecraft:short_grass"
+    }
+  ],
+  "processingDuration": 10000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:short_grass"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:short_grass"
+    }
+  ]
+}

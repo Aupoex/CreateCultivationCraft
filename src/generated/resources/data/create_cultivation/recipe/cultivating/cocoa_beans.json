@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:cocoa",
+  "ingredients": [
+    {
+      "item": "minecraft:cocoa_beans"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "count": 3,
+      "id": "minecraft:cocoa_beans"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:cocoa_beans"
+    }
+  ]
+}

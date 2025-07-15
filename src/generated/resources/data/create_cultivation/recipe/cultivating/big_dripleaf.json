@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:big_dripleaf",
+  "ingredients": [
+    {
+      "item": "minecraft:big_dripleaf"
+    }
+  ],
+  "processingDuration": 22000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:big_dripleaf"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:big_dripleaf"
+    }
+  ]
+}

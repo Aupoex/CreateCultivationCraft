@@ -1,0 +1,24 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:melon_stem",
+  "ingredients": [
+    {
+      "item": "minecraft:melon_seeds"
+    }
+  ],
+  "processingDuration": 25000,
+  "results": [
+    {
+      "count": 4,
+      "id": "minecraft:melon_slice"
+    },
+    {
+      "chance": 0.5,
+      "count": 4,
+      "id": "minecraft:melon_slice"
+    },
+    {
+      "id": "minecraft:melon_seeds"
+    }
+  ]
+}

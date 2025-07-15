@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:sea_pickle",
+  "ingredients": [
+    {
+      "item": "minecraft:sea_pickle"
+    }
+  ],
+  "processingDuration": 12000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:sea_pickle"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:sea_pickle"
+    }
+  ]
+}

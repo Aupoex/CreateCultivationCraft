@@ -21,10 +21,12 @@ import java.util.List;
 public class CultivatingRecipeParams extends ProcessingRecipeParams {
 
     public Block cropBlock;
+    public int height;
 
     public CultivatingRecipeParams() {
         super();
         this.cropBlock = Blocks.AIR;
+        this.height = 1;
     }
 
     public static final MapCodec<CultivatingRecipeParams> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -42,14 +44,17 @@ public class CultivatingRecipeParams extends ProcessingRecipeParams {
                 return results;
             }),
             Codec.INT.optionalFieldOf("processingDuration", 100).forGetter(p -> p.processingDuration),
-            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("crop_block").forGetter(p -> ((CultivatingRecipeParams)p).cropBlock)
+            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("crop_block").forGetter(p -> ((CultivatingRecipeParams)p).cropBlock),
+            Codec.INT.optionalFieldOf("height", 1).forGetter(p -> ((CultivatingRecipeParams)p).height)
 
-    ).apply(instance, (ingredients, results, duration, cropBlock) -> {
+
+    ).apply(instance, (ingredients, results, duration, cropBlock, height) -> {
         CultivatingRecipeParams params = new CultivatingRecipeParams();
         ingredients.forEach(either -> either.ifRight(params.ingredients::add).ifLeft(params.fluidIngredients::add));
         results.forEach(either -> either.ifRight(params.results::add).ifLeft(params.fluidResults::add));
         params.processingDuration = duration;
         params.cropBlock = cropBlock;
+        params.height = height;
         return params;
     }));
 
@@ -60,11 +65,13 @@ public class CultivatingRecipeParams extends ProcessingRecipeParams {
     protected void encode(RegistryFriendlyByteBuf buffer) {
         super.encode(buffer);
         buffer.writeResourceLocation(BuiltInRegistries.BLOCK.getKey(this.cropBlock));
+        buffer.writeInt(this.height);
     }
 
     @Override
     protected void decode(RegistryFriendlyByteBuf buffer) {
         super.decode(buffer);
         this.cropBlock = BuiltInRegistries.BLOCK.get(buffer.readResourceLocation());
+        this.height = buffer.readInt();
     }
 }

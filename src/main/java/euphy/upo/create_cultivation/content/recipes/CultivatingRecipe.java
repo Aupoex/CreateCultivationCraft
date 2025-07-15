@@ -5,7 +5,6 @@ import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import euphy.upo.create_cultivation.registry.CCRecipes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -37,6 +36,10 @@ public class CultivatingRecipe extends ProcessingRecipe<RecipeInput, Cultivating
         if (ingredients.isEmpty())
             return false;
         return ingredients.get(0).test(recipeInput.getItem(0));
+    }
+
+    public int getHeight() {
+        return this.params.height;
     }
 
     @Override

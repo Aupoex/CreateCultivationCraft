@@ -1,0 +1,5 @@
+// 1.21.1	2025-07-16T02:52:19.4691018	Create Cultivation Compat Recipes
+91f5f3a657d02a38e032c7902e9844fff02dbd8e data/create_cultivation/recipe/compat/farmersdelight/cabbage.json
+b95b400a023fa5ff603160e9da154f910b58b435 data/create_cultivation/recipe/compat/farmersdelight/onion.json
+83503d54152a747df37c1cb7a3f827f01e5ff035 data/create_cultivation/recipe/compat/farmersdelight/rice.json
+bbbc7bfae853172df804fdd3a19d6f37db93a1b0 data/create_cultivation/recipe/compat/farmersdelight/tomato.json

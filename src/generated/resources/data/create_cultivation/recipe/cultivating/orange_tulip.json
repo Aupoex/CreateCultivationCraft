@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:orange_tulip",
+  "ingredients": [
+    {
+      "item": "minecraft:orange_tulip"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:orange_tulip"
+    },
+    {
+      "chance": 0.1,
+      "id": "minecraft:orange_tulip"
+    }
+  ]
+}

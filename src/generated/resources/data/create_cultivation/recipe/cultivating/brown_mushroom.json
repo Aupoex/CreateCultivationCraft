@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:brown_mushroom",
+  "ingredients": [
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "processingDuration": 20000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:brown_mushroom"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:brown_mushroom"
+    }
+  ]
+}

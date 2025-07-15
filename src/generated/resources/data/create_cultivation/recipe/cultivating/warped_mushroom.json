@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:warped_fungus",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_fungus"
+    }
+  ],
+  "processingDuration": 25000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:warped_fungus"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:warped_fungus"
+    }
+  ]
+}

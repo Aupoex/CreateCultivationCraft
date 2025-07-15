@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:blue_orchid",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_orchid"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:blue_orchid"
+    },
+    {
+      "chance": 0.1,
+      "id": "minecraft:blue_orchid"
+    }
+  ]
+}

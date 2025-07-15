@@ -1,0 +1,21 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:sunflower",
+  "height": 2,
+  "ingredients": [
+    {
+      "item": "minecraft:sunflower"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:sunflower"
+    },
+    {
+      "chance": 0.1,
+      "id": "minecraft:sunflower"
+    }
+  ]
+}

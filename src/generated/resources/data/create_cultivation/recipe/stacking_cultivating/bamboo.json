@@ -1,0 +1,12 @@
+{
+  "type": "create_cultivation:stacking_cultivating",
+  "block_to_render": "minecraft:bamboo",
+  "ingredient": {
+    "item": "minecraft:bamboo"
+  },
+  "maxHeight": 12,
+  "processingDuration": 3600,
+  "result": {
+    "id": "minecraft:bamboo"
+  }
+}

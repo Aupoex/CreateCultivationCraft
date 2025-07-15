@@ -1,0 +1,19 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:torchflower_crop",
+  "ingredients": [
+    {
+      "item": "minecraft:torchflower_seeds"
+    }
+  ],
+  "processingDuration": 18000,
+  "results": [
+    {
+      "id": "minecraft:torchflower"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:torchflower_seeds"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:potatoes",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "processingDuration": 18000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:potato"
+    },
+    {
+      "chance": 0.5,
+      "id": "minecraft:potato"
+    },
+    {
+      "chance": 0.05,
+      "id": "minecraft:poisonous_potato"
+    }
+  ]
+}

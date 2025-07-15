@@ -1,0 +1,21 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:small_dripleaf",
+  "height": 2,
+  "ingredients": [
+    {
+      "item": "minecraft:small_dripleaf"
+    }
+  ],
+  "processingDuration": 22000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:small_dripleaf"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:small_dripleaf"
+    }
+  ]
+}

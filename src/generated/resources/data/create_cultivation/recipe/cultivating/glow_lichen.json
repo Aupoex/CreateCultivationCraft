@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:glow_lichen",
+  "ingredients": [
+    {
+      "item": "minecraft:glow_lichen"
+    }
+  ],
+  "processingDuration": 30000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:glow_lichen"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:glow_lichen"
+    }
+  ]
+}

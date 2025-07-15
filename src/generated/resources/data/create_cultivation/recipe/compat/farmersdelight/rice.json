@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "create_cultivation:cultivating",
+  "crop_block": "farmersdelight:rice",
+  "ingredients": [
+    {
+      "item": "farmersdelight:rice"
+    }
+  ],
+  "processingDuration": 18000,
+  "results": [
+    {
+      "count": 2,
+      "id": "farmersdelight:rice_panicle"
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "id": "farmersdelight:rice_panicle"
+    },
+    {
+      "count": 1,
+      "id": "farmersdelight:rice"
+    }
+  ]
+}

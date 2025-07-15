@@ -1,0 +1,18 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:pumpkin_stem",
+  "ingredients": [
+    {
+      "item": "minecraft:pumpkin_seeds"
+    }
+  ],
+  "processingDuration": 25000,
+  "results": [
+    {
+      "id": "minecraft:pumpkin"
+    },
+    {
+      "id": "minecraft:pumpkin_seeds"
+    }
+  ]
+}

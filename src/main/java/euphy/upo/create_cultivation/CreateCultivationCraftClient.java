@@ -1,7 +1,10 @@
 package euphy.upo.create_cultivation;
 
 import euphy.upo.create_cultivation.content.cultivation_base.CultivationBaseRenderer;
+import euphy.upo.create_cultivation.ponder.CCPonderPlugin;
 import euphy.upo.create_cultivation.registry.CCBlockEntities;
+import euphy.upo.create_cultivation.registry.CCPartialModels;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -20,7 +23,8 @@ public class CreateCultivationCraftClient {
 
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-
+        event.enqueueWork(CCPartialModels::init);
+        PonderIndex.addPlugin(new CCPonderPlugin());
     }
 
     @SubscribeEvent

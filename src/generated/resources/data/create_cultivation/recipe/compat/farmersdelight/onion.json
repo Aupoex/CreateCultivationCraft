@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "create_cultivation:cultivating",
+  "crop_block": "farmersdelight:onions",
+  "ingredients": [
+    {
+      "item": "farmersdelight:onion"
+    }
+  ],
+  "processingDuration": 18000,
+  "results": [
+    {
+      "count": 2,
+      "id": "farmersdelight:onion"
+    },
+    {
+      "chance": 0.5,
+      "count": 1,
+      "id": "farmersdelight:onion"
+    }
+  ]
+}

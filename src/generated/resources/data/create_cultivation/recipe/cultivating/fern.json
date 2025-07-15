@@ -1,0 +1,20 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:fern",
+  "ingredients": [
+    {
+      "item": "minecraft:fern"
+    }
+  ],
+  "processingDuration": 10000,
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:fern"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:fern"
+    }
+  ]
+}

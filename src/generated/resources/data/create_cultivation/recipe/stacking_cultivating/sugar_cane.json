@@ -4,7 +4,8 @@
   "ingredient": {
     "item": "minecraft:sugar_cane"
   },
-  "processingDuration": 180,
+  "maxHeight": 4,
+  "processingDuration": 18000,
   "result": {
     "id": "minecraft:sugar_cane"
   }
