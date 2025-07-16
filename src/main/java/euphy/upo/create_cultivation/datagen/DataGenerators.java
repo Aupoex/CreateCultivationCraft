@@ -14,7 +14,7 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper(); // 获取文件助手
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper(); 
 
         generator.addProvider(true, new CCRecipeProvider(packOutput, lookupProvider));
         generator.addProvider(true, new CCCompatRecipeGenerator(packOutput));
