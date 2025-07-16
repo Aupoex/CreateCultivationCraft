@@ -14,5 +14,6 @@
   "create_cultivation.jade.crop": "Crop: %s",
   "create_cultivation.jade.mature": "Mature",
   "create_cultivation.jade.time_remaining": "Time Remaining: %s seconds",
-  "create_cultivation.jade.growth": "Growth Height: %s / %s"
+  "create_cultivation.jade.growth": "Growth Height: %s / %s",
+  "create_cultivation.jade.stalled": "Stalled"
 }

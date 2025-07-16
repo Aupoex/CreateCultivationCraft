@@ -1,6 +1,7 @@
 package euphy.upo.create_cultivation.content.cultivation_tank;
 
 import com.simibubi.create.api.connectivity.ConnectivityHandler;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
@@ -44,6 +45,7 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
     private int currentHeight = 0;
     private int maxHeight = 3;
 
+    private float growthAccumulator = 0.0f;
 
     private BlockPos controller;
     private BlockPos lastKnownPos;
@@ -154,7 +156,6 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
         super.lazyTick();
         if (level == null || level.isClientSide || !isController()) return;
 
-
         if (isWatered) {
             if (wateredTickCounter-- <= 0) {
                 isWatered = false;
@@ -166,64 +167,74 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
         updateWorkingState();
 
         if (getBlockState().getValue(CultivationTankBlock.WORKING) && getBlockState().getValue(CultivationTankBlock.PLANTED)) {
-
             if (recipeMode == RecipeMode.STAGE_BASED) {
                 boolean canGrow = currentRecipe.map(holder -> {
                     if (holder.value() instanceof CultivatingRecipe recipe) {
-                        if (recipe.getHeight() > 1) {
-                            return getHeight() >= recipe.getHeight();
-                        }
+                        return recipe.getHeight() <= 1 || getHeight() >= recipe.getHeight();
                     }
                     return true;
                 }).orElse(false);
-
-                if (!canGrow) {
-                    return;
-                }
+                if (!canGrow) return;
             }
 
-
-            boolean wasMature = isMature();
-            if (!wasMature) {
-                switch (recipeMode) {
-                    case STAGE_BASED:
-                        handleStageGrowth();
-                        break;
-                    case STACK_BASED:
-                        handleStackingGrowth();
-                        break;
+            if (!isMature()) {
+                float speedMultiplier = getSpeedMultiplier();
+                if (speedMultiplier > 0) {
+                    growthAccumulator += speedMultiplier;
+                    int pointsToApply = (int) growthAccumulator;
+                    if (pointsToApply > 0) {
+                        switch (recipeMode) {
+                            case STAGE_BASED: handleStageGrowth(pointsToApply); break;
+                            case STACK_BASED: handleStackingGrowth(pointsToApply); break;
+                        }
+                        growthAccumulator -= pointsToApply;
+                    }
                 }
 
                 if (isMature()) {
                     harvestCooldown = MATURE_DISPLAY_TICKS;
-                    setChanged();
                 }
             } else {
                 if (harvestCooldown > 0) {
                     harvestCooldown--;
-                    setChanged();
                 }
             }
+            setChanged();
         }
     }
 
+    public float getSpeedMultiplier() {
+        BlockEntity beBelow = level.getBlockEntity(worldPosition.below());
+        if (beBelow instanceof KineticBlockEntity kineticBE) {
+            float speed = Math.abs(kineticBE.getSpeed());
+            if (speed < 32) {
+                return speed / 32.0f;
+            }
+            return Mth.lerp(Mth.clamp((speed - 32) / (256 - 32), 0, 1), 1.0f, 2.0f);
+        }
+        return 0;
+    }
 
-    private void handleStageGrowth() {
-        progress++;
+
+    private void handleStageGrowth(int points) {
+        progress += points;
         setChanged();
         updateVisualGrowthStage();
     }
 
-    private void handleStackingGrowth() {
+    private void handleStackingGrowth(int points) {
         CultivationTankBlockEntity controllerBE = getControllerBE();
         if (controllerBE == null) return;
 
+        controllerBE.progress += points;
         int limit = Math.min(controllerBE.getHeight(), controllerBE.maxHeight);
-        if (controllerBE.currentHeight >= limit) return;
 
-        controllerBE.progress++;
-        if (controllerBE.progress >= controllerBE.processingDuration) {
-            controllerBE.progress = 0;
+        while (controllerBE.progress >= controllerBE.processingDuration) {
+            if (controllerBE.currentHeight >= limit) {
+                controllerBE.progress = controllerBE.processingDuration;
+                break;
+            }
+            controllerBE.progress -= controllerBE.processingDuration;
             controllerBE.currentHeight++;
             controllerBE.setChanged();
             controllerBE.notifyUpdate();
@@ -341,6 +352,7 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
             compound.putInt("CurrentHeight", currentHeight);
             compound.putInt("MaxHeight", maxHeight);
             compound.putInt("HarvestCooldown", harvestCooldown);
+            compound.putFloat("GrowthAccumulator", growthAccumulator);
             if (isWatered) {
                 compound.putBoolean("Watered", true);
             }
@@ -374,6 +386,7 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
             currentHeight = compound.getInt("CurrentHeight");
             maxHeight = compound.getInt("MaxHeight");
             harvestCooldown = compound.getInt("HarvestCooldown");
+            growthAccumulator = compound.getFloat("GrowthAccumulator");
             isWatered = compound.getBoolean("Watered");
         }
 

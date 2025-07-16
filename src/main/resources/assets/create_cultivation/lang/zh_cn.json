@@ -14,6 +14,7 @@
   "create_cultivation.jade.crop": "作物: %s",
   "create_cultivation.jade.mature": "已成熟",
   "create_cultivation.jade.time_remaining": "剩余时间: %s 秒",
-  "create_cultivation.jade.growth": "生长高度: %s / %s"
+  "create_cultivation.jade.growth": "生长高度: %s / %s",
+  "create_cultivation.jade.stalled": "已停滞"
 
 }
