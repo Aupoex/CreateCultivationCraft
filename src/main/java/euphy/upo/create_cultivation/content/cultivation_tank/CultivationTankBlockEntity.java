@@ -105,7 +105,16 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
         controllerBE.recipeMode = RecipeMode.STAGE_BASED;
         controllerBE.processingDuration = recipe.value().getProcessingDuration() > 0 ? recipe.value().getProcessingDuration() / 10 : 10;
         controllerBE.progress = 0;
-        level.setBlock(worldPosition, getBlockState().setValue(CultivationTankBlock.PLANTED, true).setValue(CultivationTankBlock.GROWTH_STAGE, 0), 3);
+        controllerBE.growthAccumulator = 0;
+
+        for (int i = 0; i < controllerBE.getHeight(); i++) {
+            BlockPos posInStack = controllerBE.getBlockPos().above(i);
+            BlockState stateInStack = level.getBlockState(posInStack);
+            if (stateInStack.getBlock() instanceof CultivationTankBlock) {
+                level.setBlock(posInStack, stateInStack.setValue(CultivationTankBlock.PLANTED, true).setValue(CultivationTankBlock.GROWTH_STAGE, 0), 3);
+            }
+        }
+
         controllerBE.setChanged();
         controllerBE.notifyUpdate();
     }
@@ -118,8 +127,15 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
         controllerBE.processingDuration = recipe.value().getProcessingDuration() > 0 ? recipe.value().getProcessingDuration() / 10 : 20;
         controllerBE.maxHeight = recipe.value().getMaxHeight();
         controllerBE.progress = 0;
+        controllerBE.growthAccumulator = 0;
         controllerBE.currentHeight = 1;
-        level.setBlock(worldPosition, getBlockState().setValue(CultivationTankBlock.PLANTED, true), 3);
+        for (int i = 0; i < controllerBE.getHeight(); i++) {
+            BlockPos posInStack = controllerBE.getBlockPos().above(i);
+            BlockState stateInStack = level.getBlockState(posInStack);
+            if (stateInStack.getBlock() instanceof CultivationTankBlock) {
+                level.setBlock(posInStack, stateInStack.setValue(CultivationTankBlock.PLANTED, true), 3);
+            }
+        }
         controllerBE.setChanged();
         controllerBE.notifyUpdate();
     }
@@ -579,5 +595,31 @@ public class CultivationTankBlockEntity extends SmartBlockEntity implements IMul
             controller.setChanged();
             controller.notifyUpdate();
         }
+    }
+
+    public void clearTank() {
+        CultivationTankBlockEntity controller = getControllerBE();
+        if (controller == null || level == null) {
+            return;
+        }
+
+        controller.currentRecipe = Optional.empty();
+        controller.recipeMode = RecipeMode.NONE;
+        controller.progress = 0;
+        controller.growthAccumulator = 0f;
+        controller.currentHeight = 0;
+        controller.harvestCooldown = 0;
+        controller.isWatered = false;
+
+        for (int i = 0; i < controller.height; i++) {
+            BlockPos posInStack = controller.getBlockPos().above(i);
+            BlockState stateInStack = level.getBlockState(posInStack);
+            if (stateInStack.getBlock() instanceof CultivationTankBlock) {
+                level.setBlock(posInStack, stateInStack.setValue(CultivationTankBlock.PLANTED, false).setValue(CultivationTankBlock.GROWTH_STAGE, 0), 3);
+            }
+        }
+
+        controller.setChanged();
+        controller.notifyUpdate();
     }
 }

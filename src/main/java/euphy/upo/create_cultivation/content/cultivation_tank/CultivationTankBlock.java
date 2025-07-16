@@ -76,7 +76,7 @@ public class CultivationTankBlock extends Block implements IBE<CultivationTankBl
                     popResource(level, dropPos, seedStack);
                 });
 
-                tankBE.onHarvest();
+                tankBE.clearTank();
             });
             return InteractionResult.SUCCESS;
         }
