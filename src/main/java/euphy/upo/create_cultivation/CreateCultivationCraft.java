@@ -22,7 +22,6 @@ public class CreateCultivationCraft {
     }
     public CreateCultivationCraft(IEventBus modEventBus, ModContainer modContainer) {
         modEventBus.addListener(this::commonSetup);
-        //NeoForge.EVENT_BUS.register(this);
         CCBlocks.register();
         CCBlockEntities.register();
         CCCreativeModeTabs.register(modEventBus);
@@ -34,6 +33,5 @@ public class CreateCultivationCraft {
     private void commonSetup(FMLCommonSetupEvent event) {
 
         event.enqueueWork(CCStress::registerAllStressValues);
-        //event.enqueueWork(CCTallCrops::register);
     }
 }
