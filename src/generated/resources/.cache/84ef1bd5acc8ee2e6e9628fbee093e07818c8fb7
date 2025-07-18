@@ -1,0 +1,4 @@
+// 1.21.1	2025-07-16T00:07:31.939552	Tags for minecraft:block mod id create_cultivation
+ad313e90777769975d49a81734353d907ad9d349 data/create/tags/block/wrench_pickup.json
+ad313e90777769975d49a81734353d907ad9d349 data/minecraft/tags/block/mineable/axe.json
+ad313e90777769975d49a81734353d907ad9d349 data/minecraft/tags/block/mineable/pickaxe.json

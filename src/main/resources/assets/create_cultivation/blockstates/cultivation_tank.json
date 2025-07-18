@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "when": { "top": true, "bottom": true },
+      "apply": { "model": "create_cultivation:block/cultivation_tank_single" }
+    },
+    {
+      "when": { "top": true, "bottom": false },
+      "apply": { "model": "create_cultivation:block/cultivation_tank_top" }
+    },
+    {
+      "when": { "top": false, "bottom": true },
+      "apply": { "model": "create_cultivation:block/cultivation_tank_bottom" }
+    },
+    {
+      "when": { "top": false, "bottom": false },
+      "apply": { "model": "create_cultivation:block/cultivation_tank_middle" }
+    }
+  ]
+}

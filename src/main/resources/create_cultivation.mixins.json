@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "euphy.upo.create_cultivation.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "SpoutBlockEntityMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "create_cultivation:cultivating",
+  "crop_block": "minecraft:beetroots",
+  "ingredients": [
+    {
+      "item": "minecraft:beetroot_seeds"
+    }
+  ],
+  "processingDuration": 15000,
+  "results": [
+    {
+      "item": "minecraft:beetroot"
+    },
+    {
+      "chance": 0.5,
+      "item": "minecraft:beetroot"
+    },
+    {
+      "count": 2,
+      "item": "minecraft:beetroot_seeds"
+    }
+  ]
+}

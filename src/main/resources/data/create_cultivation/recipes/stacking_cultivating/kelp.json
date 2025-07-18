@@ -1,0 +1,15 @@
+{
+  "type": "create_cultivation:stacking_cultivating",
+  "block_to_render": "minecraft:kelp_plant",
+  "ingredients": [
+    {
+      "item": "minecraft:kelp"
+    }
+  ],
+  "maxHeight": 8,
+  "processingDuration": 10000,
+  "result": {
+    "item": "minecraft:kelp"
+  },
+  "results": []
+}
