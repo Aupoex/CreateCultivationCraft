@@ -28,7 +28,7 @@ public class CreateCultivationCraft {
         CCRecipes.register(modEventBus);
         REGISTRATE.registerEventListeners(modEventBus);
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(DataGenerators::gatherData);
+        //modEventBus.addListener(DataGenerators::gatherData);
 
     }
 
