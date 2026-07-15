@@ -6,7 +6,6 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
-import com.simibubi.create.foundation.fluid.FluidIngredient;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -14,6 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +31,8 @@ public class CultivatingRecipeParams extends ProcessingRecipeParams {
 
     public static final MapCodec<CultivatingRecipeParams> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 
-            Codec.either(FluidIngredient.CODEC, Ingredient.CODEC).listOf().fieldOf("ingredients").forGetter(p -> {
-                List<Either<FluidIngredient, Ingredient>> ingredients = new ArrayList<>();
+            Codec.either(SizedFluidIngredient.NESTED_CODEC, Ingredient.CODEC).listOf().fieldOf("ingredients").forGetter(p -> {
+                List<Either<SizedFluidIngredient, Ingredient>> ingredients = new ArrayList<>();
                 p.ingredients.forEach(i -> ingredients.add(Either.right(i)));
                 p.fluidIngredients.forEach(i -> ingredients.add(Either.left(i)));
                 return ingredients;

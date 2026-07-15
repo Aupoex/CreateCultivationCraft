@@ -140,7 +140,7 @@ public class CultivationBaseBlockEntity extends KineticBlockEntity {
                 }
 
                 for (ProcessingOutput output : results) {
-                    ItemStack rolled = output.rollOutput();
+                    ItemStack rolled = output.rollOutput(level.getRandom());
                     if (!rolled.isEmpty()) {
                         rolledResults.add(rolled);
                     }
