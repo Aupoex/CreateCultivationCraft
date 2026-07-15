@@ -45,7 +45,7 @@ public class CCRecipeProvider extends ProcessingRecipeGen<CultivatingRecipeParam
 
 
     @Override
-    protected void buildRecipes(RecipeOutput consumer) {
+    public void buildRecipes(RecipeOutput consumer) {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, CCBlocks.CULTIVATION_BASE.get())
                 .pattern("GDG")
